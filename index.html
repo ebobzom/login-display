@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <link type="text/css" rel="stylesheet" href="//unpkg.com/bootstrap/dist/css/bootstrap.min.css" />
+    <link type="text/css" rel="stylesheet" href="//unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.min.css" />
+
+    <!-- Load polyfills to support older browsers -->
+    <script src="//polyfill.io/v3/polyfill.min.js?features=es2015%2CIntersectionObserver" crossorigin="anonymous"></script>
+
+    <!-- Load Vue followed by BootstrapVue -->
+    <script src="//unpkg.com/vue@latest/dist/vue.min.js"></script>
+    <script src="//unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.min.js"></script>
+
+    <!-- Load the following for BootstrapVueIcons support -->
+    <script src="//unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue-icons.min.js"></script>
+    <style>
+
+        body{
+            background-color: rgb(237, 237, 250);
+        }
+
+        p{
+            color: rgb(50, 28, 70);
+            font-weight: 900;
+            font-size: larger;
+            text-align: center;
+        }
+        .container{
+            display: flex;
+            width: 80%;
+            margin: 0 auto;
+        }
+
+        .inputs, .result{
+            /* width: 500px; */
+            
+            flex-basis: 300px;
+            margin: 0 auto;
+            margin-top: 40px;
+            padding: 10px;
+            border: 2px solid rgb(187, 190, 224);
+            background-color: rgb(227, 227, 241);
+        }
+
+        .result{
+            font-weight: 700;
+            font-size: 18px;
+            color: rgb(100, 100, 126);
+        }
+        @media screen and (max-width: 400px){
+            .container{
+                flex-direction: column;
+            }
+
+            .inputs, .result{
+                flex-basis: 300px;
+            }
+            .result{
+                width: 220px;
+            }
+            .error{
+                color: red;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="app"></div>
+    <script type="text/x-template" id="main-template">
+
+        <div class='container'>
+            <div class="inputs" >
+                <p>Login</p>
+                <b-form-input v-model="text" class="mt-4 test" placeholder="Enter your email"></b-form-input>
+                <b-form-input v-model="password" class="mt-4 test" placeholder="Enter your password"></b-form-input>
+                <b-button variant="success" v-on:click='showResult' class="mt-2">Submit</b-button>
+                <p v-show='error' class='error'>Please Fill All inputs</p>
+            </div>
+            <div class="result" v-show="displayResult">
+                <div class="mt-2">
+                    <p>Value: {{ realEmail }} </p>
+                </div>
+                <div class="mt-2">
+                   <p> Password: {{ realPassword }}</p>
+                </div>
+                <b-button variant="success" v-on:click='reset' class="mt-2">Reset</b-button>
+            </div>
+        </div>
+    </script>
+    <script src="app.js"></script>
+</body>
+</html>
